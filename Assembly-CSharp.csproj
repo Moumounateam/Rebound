@@ -38,6 +38,8 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Cube Script.cs" />
      <Compile Include="Assets\Target.cs" />
+     <Compile Include="Assets\PlayerMovement.cs" />
+     <Compile Include="Assets\MouseController.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:\Unity\2021.3.24f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

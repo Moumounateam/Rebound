@@ -6,3 +6,6 @@ Logs/
 *.cache
 UserSettings/
 Assets/TextMesh*
+obj/
+Assembly-CSharp.csproj
+Rebound.sln

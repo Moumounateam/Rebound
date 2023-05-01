@@ -5,23 +5,27 @@ using Unity.Netcode;
 
 public class PlayerMovement : NetworkBehaviour
 {
-    // Update is called once per frame
+    private float moveSpeed = 25f;
+
+    float horizontalInput = 0;
+    float verticalInput = 0;
+
     void Update()
     {
-        if (IsOwner == false || IsServer == true)
-        {
-            return;
-        }
-        if (Input.anyKey) {
-            float horizontalInput = Input.GetAxis("Horizontal");
-            float verticalInput = Input.GetAxis("Vertical");
-            MovePlayerServerRpc(horizontalInput, verticalInput);
-        }
+        if (IsOwner == false) return;
+        horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        if (IsOwner == false) return;
+        MovePlayerServerRpc(horizontalInput, verticalInput);
     }
 
     [ServerRpc]
     private void MovePlayerServerRpc(float x, float y) {
-        // Player Movement
-        transform.Translate(new Vector3(x, 0, y) * 30 * Time.deltaTime);
+        this.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(x, 0, y).normalized * moveSpeed);
     }
 }

@@ -36,10 +36,10 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Cube Script.cs" />
-     <Compile Include="Assets\Target.cs" />
-     <Compile Include="Assets\PlayerMovement.cs" />
-     <Compile Include="Assets\MouseController.cs" />
+     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\MouseController.cs" />
+     <Compile Include="Assets\Scripts\RPCTest.cs" />
+     <Compile Include="Assets\Scripts\NetworkCommandLine.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:\Unity\2021.3.24f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -291,6 +291,27 @@
     </Reference>
     <Reference Include="ReportGeneratorMerged">
         <HintPath>C:\Users\matag\Rebound\Library\PackageCache\com.unity.testtools.codecoverage@1.2.2\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Collections.LowLevel.ILSupport">
+        <HintPath>C:\Users\matag\Rebound\Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Unsafe">
+        <HintPath>C:\Users\matag\Rebound\Library\PackageCache\com.unity.burst@1.6.6\Unity.Burst.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Mdb">
+        <HintPath>C:\Users\matag\Rebound\Library\PackageCache\com.unity.burst@1.6.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Pdb">
+        <HintPath>C:\Users\matag\Rebound\Library\PackageCache\com.unity.burst@1.6.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil">
+        <HintPath>C:\Users\matag\Rebound\Library\PackageCache\com.unity.burst@1.6.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Rocks">
+        <HintPath>C:\Users\matag\Rebound\Library\PackageCache\com.unity.burst@1.6.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+        <HintPath>C:\Users\matag\Rebound\Library\PackageCache\com.unity.nuget.mono-cecil@1.10.1\Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
         <HintPath>D:\Unity\2021.3.24f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
@@ -726,6 +747,39 @@
     </Reference>
     <Reference Include="Unity.EditorCoroutines.Editor">
         <HintPath>C:\Users\matag\Rebound\Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Networking.Editor">
+        <HintPath>C:\Users\matag\Rebound\Library\ScriptAssemblies\Unity.Networking.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Collections">
+        <HintPath>C:\Users\matag\Rebound\Library\ScriptAssemblies\Unity.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics.Editor">
+        <HintPath>C:\Users\matag\Rebound\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Networking.Transport">
+        <HintPath>C:\Users\matag\Rebound\Library\ScriptAssemblies\Unity.Networking.Transport.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Netcode.Editor.PackageChecker">
+        <HintPath>C:\Users\matag\Rebound\Library\ScriptAssemblies\Unity.Netcode.Editor.PackageChecker.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Netcode.Runtime">
+        <HintPath>C:\Users\matag\Rebound\Library\ScriptAssemblies\Unity.Netcode.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+        <HintPath>C:\Users\matag\Rebound\Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst">
+        <HintPath>C:\Users\matag\Rebound\Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Netcode.Components">
+        <HintPath>C:\Users\matag\Rebound\Library\ScriptAssemblies\Unity.Netcode.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Netcode.Editor">
+        <HintPath>C:\Users\matag\Rebound\Library\ScriptAssemblies\Unity.Netcode.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Editor">
+        <HintPath>C:\Users\matag\Rebound\Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

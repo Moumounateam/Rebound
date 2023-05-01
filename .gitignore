@@ -3,6 +3,5 @@ Library/
 Temp/
 Packages/
 Logs/
-*.meta
 *.cache
 UserSettings/

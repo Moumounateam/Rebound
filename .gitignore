@@ -3,4 +3,5 @@ Library/
 Temp/
 Packages/
 Logs/
-Logs/
+*.meta
+*.cache

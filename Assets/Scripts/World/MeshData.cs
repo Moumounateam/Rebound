@@ -27,11 +27,6 @@ public class MeshData
 	//Add a new vertex to our vertices
 	public void AddVertex(Vector3 vertex, bool vertexGeneratesCollider)
 	{
-		//if (isMainMesh) // ENLEVER CE CODE (IL SERT A SILENCE ERREUR COMPILE)
-		//{
-		//	isMainMesh = false;
-		//	isMainMesh = true;
-		//}
 		vertices.Add(vertex);
 		if (vertexGeneratesCollider)
 			colliderVertices.Add(vertex);

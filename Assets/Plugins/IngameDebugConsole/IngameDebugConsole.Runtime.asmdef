@@ -1,0 +1,4 @@
+﻿{
+	"Unity.InputSystem": "IngameDebugConsole.Runtime",
+	"name": "IngameDebugConsole.Runtime"
+}

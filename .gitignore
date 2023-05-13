@@ -9,3 +9,5 @@ Assets/TextMesh*
 obj/
 Assembly-CSharp.csproj
 Rebound.sln
+.idea
+*.csproj

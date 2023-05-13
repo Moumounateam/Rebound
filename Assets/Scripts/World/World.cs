@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class World : MonoBehaviour 
 {
@@ -12,6 +13,9 @@ public class World : MonoBehaviour
 	public Vector2Int mapSeedOffset;
 	Dictionary<Vector3Int, ChunkData> chunkDataDictionary = new Dictionary<Vector3Int, ChunkData>();
 	Dictionary<Vector3Int, ChunkRenderer> chunkDictionary = new Dictionary<Vector3Int, ChunkRenderer>();
+
+	public UnityEvent OnWorldCreated;
+	public UnityEvent OnNewChunksGenerated;
 
 	public void GenerateWorld()
 	{
@@ -43,11 +47,8 @@ public class World : MonoBehaviour
 			chunkRenderer.initChunk(data);
 			chunkRenderer.UpdateChunk(meshData);
 		}
+		OnWorldCreated?.Invoke();
 	}
-
-	//private void GenerateVoxels(ChunkData data)
-	//{
-	//}
 
 	internal BlockType GetBlockFromChunkCoordinates(ChunkData chunkData, int x, int y, int z)
 	{
@@ -60,5 +61,12 @@ public class World : MonoBehaviour
 			return BlockType.Nothing;
 		Vector3Int blockInCHunkCoordinates = Chunk.GetBlockInChunkCoordinates(containerChunk, new Vector3Int(x, y, z));
 		return Chunk.GetBlockFromChunkCoordinates(containerChunk, blockInCHunkCoordinates);
+	}
+	internal void LoadAdditionalChunksRequest(GameObject player)
+	{
+		Debug.Log("Load more chunks");
+		OnNewChunksGenerated?.Invoke();
+		//GenerateWorld(Vector3Int.RoundToInt(player.transform.position));
+		//OnNewChunksGenerated?.Invoke();
 	}
 }

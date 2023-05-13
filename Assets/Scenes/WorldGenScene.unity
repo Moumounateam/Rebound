@@ -1017,6 +1017,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2046925616}
   - component: {fileID: 2046925615}
+  - component: {fileID: 2046925617}
   m_Layer: 0
   m_Name: BiomeGenerator
   m_TagString: Untagged
@@ -1038,6 +1039,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterThreshold: 10
   biomeNoiseSettings: {fileID: 11400000, guid: 8b5564da59d667f47b6eb099c4f5eca5, type: 2}
+  domainWarping: {fileID: 2046925617}
+  WarpingSwitch: 1
   startLayerHandler: {fileID: 918314827}
   additionalLayersHandlers:
   - {fileID: 1914060929}
@@ -1061,6 +1064,22 @@ Transform:
   m_Father: {fileID: 164084107}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2046925617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046925614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d8812572e2282d48ac025a1cb705457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noiseDomainX: {fileID: 11400000, guid: 9bea0be92d5adb94a90fb0350486429b, type: 2}
+  noiseDomainY: {fileID: 11400000, guid: cdda461db9c30064282241cf688128ce, type: 2}
+  amplitudeX: 20
+  amplitudeY: 20
 --- !u!1 &2135116336
 GameObject:
   m_ObjectHideFlags: 0

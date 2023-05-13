@@ -6,6 +6,8 @@ public class BiomeGenerator : MonoBehaviour
 {
 	public int waterThreshold = 50;
 	public NoiseSettings biomeNoiseSettings;
+	public DomainWarping domainWarping;
+	public bool WarpingSwitch = true;
 	public BlockLayerHandler startLayerHandler;
 	public List<BlockLayerHandler> additionalLayersHandlers;
 
@@ -27,7 +29,12 @@ public class BiomeGenerator : MonoBehaviour
 
 	private int GetSurfaceHeightNoise(int x, int z, int chunkHeight)
 	{
-		float terrainHeight = NoiseGenerator.OctavePerlin(x, z, biomeNoiseSettings);
+		float terrainHeight;
+		if (WarpingSwitch)
+			terrainHeight = domainWarping.GenerateDomainNoise(x, z, biomeNoiseSettings);
+		else
+			terrainHeight = NoiseGenerator.OctavePerlin(x, z, biomeNoiseSettings);
+
 		terrainHeight = NoiseGenerator.Redistribution(terrainHeight, biomeNoiseSettings);
 		int surfaceHeight = NoiseGenerator.RemapValue01ToInt(terrainHeight, 0, chunkHeight);
 		return surfaceHeight;

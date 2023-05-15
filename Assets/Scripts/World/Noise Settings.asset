@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d8b469d401b7943ab2bd075fac22bd, type: 3}
   m_Name: Noise Settings
   m_EditorClassIdentifier: 
-  noiseZoom: 0.01
+  noiseZoom: 0.005
   persistance: 0.5
   octaves: 5
   offset: {x: -100, y: 3400}

@@ -40,15 +40,15 @@ public class World : MonoBehaviour
 	{
 		WorldGenerationData worldGenerationData = GetPositionsThatPlayerSees(position);
 
-		//foreach (Vector3Int pos in worldGenerationData.chunkPositionsToRemove)
-		//{
-		//	WorldDataHelper.RemoveChunk(this, pos);
-		//}
+		foreach (Vector3Int pos in worldGenerationData.chunkPositionsToRemove)
+		{
+			WorldDataHelper.RemoveChunk(this, pos);
+		}
 
-		//foreach (Vector3Int pos in worldGenerationData.chunkDataToRemove)
-		//{
-		//	WorldDataHelper.RemoveChunkData(this, pos);
-		//}
+		foreach (Vector3Int pos in worldGenerationData.chunkDataToRemove)
+		{
+			WorldDataHelper.RemoveChunkData(this, pos);
+		}
 
 		foreach (var pos in worldGenerationData.chunkDataPositionsToCreate)
 		{
@@ -70,8 +70,6 @@ public class World : MonoBehaviour
 		}
 		OnWorldCreated?.Invoke();
 	}
-
-
 
 	internal BlockType GetBlockFromChunkCoordinates(ChunkData chunkData, int x, int y, int z)
 	{
@@ -101,17 +99,22 @@ public class World : MonoBehaviour
 		List<Vector3Int> chunkPositionsToCreate = WorldDataHelper.SelectPositonsToCreate(worldData, allChunkPositionsNeeded, playerPosition);
 		List<Vector3Int> chunkDataPositionsToCreate = WorldDataHelper.SelectDataPositonsToCreate(worldData, allChunkDataPositionsNeeded, playerPosition);
 
-		//List<Vector3Int> chunkPositionsToRemove = WorldDataHelper.GetUnnededChunks(worldData, allChunkPositionsNeeded);
-		//List<Vector3Int> chunkDataToRemove = WorldDataHelper.GetUnnededData(worldData, allChunkDataPositionsNeeded);
+		List<Vector3Int> chunkPositionsToRemove = WorldDataHelper.GetUnneededChunks(worldData, allChunkPositionsNeeded);
+		List<Vector3Int> chunkDataToRemove = WorldDataHelper.GetUnneededData(worldData, allChunkDataPositionsNeeded);
 
 		WorldGenerationData data = new WorldGenerationData
 		{
 			chunkPositionsToCreate = chunkPositionsToCreate,
 			chunkDataPositionsToCreate = chunkDataPositionsToCreate,
-			chunkPositionsToRemove = new List<Vector3Int>(),
-			chunkDataToRemove = new List<Vector3Int>(),
+			chunkPositionsToRemove = chunkPositionsToRemove,
+			chunkDataToRemove = chunkDataToRemove,
 		};
 		return data;
+	}
+
+	internal void RemoveChunk(ChunkRenderer chunk)
+	{
+		chunk.gameObject.SetActive(false);
 	}
 	
 	public struct WorldGenerationData

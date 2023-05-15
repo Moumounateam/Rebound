@@ -678,7 +678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Next: {fileID: 23379239}
-  waterLevel: 8
+  waterLevel: 3
 --- !u!4 &918314828
 Transform:
   m_ObjectHideFlags: 0

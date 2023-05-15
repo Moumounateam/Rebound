@@ -33,36 +33,23 @@ public class World : MonoBehaviour
 
 	public void GenerateWorld()
 	{
-		//chunkDataDictionary.Clear();
-		//foreach (ChunkRenderer chunk in chunkDictionary.Values)
-		//{
-		//	Destroy(chunk.gameObject);
-		//}
-		//chunkDictionary.Clear();
+		GenerateWorld(Vector3Int.zero);
+	}
 
-		//for (int x = 0; x < mapSizeInChunks; x++)
-		//{
-		//	for (int z = 0; z < mapSizeInChunks; z++)
-		//	{
+	private void GenerateWorld(Vector3Int position)
+	{
+		WorldGenerationData worldGenerationData = GetPositionsThatPlayerSees(position);
 
-		//		ChunkData data = new ChunkData(chunkSize, chunkHeight, this, new Vector3Int(x * chunkSize, 0, z * chunkSize));
-		//		//GenerateVoxels(data);
-		//		ChunkData newData = terrainGenerator.GenerateChunkData(data, mapSeedOffset);
-		//		worldData.chunkDataDictionary.Add(newData.worldPosition, newData);
-		//	}
-		//}
-		//foreach (ChunkData data in worldData.chunkDataDictionary.Values)
+		//foreach (Vector3Int pos in worldGenerationData.chunkPositionsToRemove)
 		//{
-		//	MeshData meshData = Chunk.GetChunkMeshData(data);
-		//	GameObject chunkObject = Instantiate(chunkPrefab, data.worldPosition, Quaternion.identity);
-		//	ChunkRenderer chunkRenderer = chunkObject.GetComponent<ChunkRenderer>();
-		//	worldData.chunkDictionary.Add(data.worldPosition, chunkRenderer);
-		//	chunkRenderer.initChunk(data);
-		//	chunkRenderer.UpdateChunk(meshData);
+		//	WorldDataHelper.RemoveChunk(this, pos);
 		//}
-		WorldGenerationData worldGenerationData = GetPositionsThatPlayerSees(Vector3Int.zero);
 
-		
+		//foreach (Vector3Int pos in worldGenerationData.chunkDataToRemove)
+		//{
+		//	WorldDataHelper.RemoveChunkData(this, pos);
+		//}
+
 		foreach (var pos in worldGenerationData.chunkDataPositionsToCreate)
 		{
 			ChunkData data = new ChunkData(chunkSize, chunkHeight, this, pos);
@@ -79,9 +66,12 @@ public class World : MonoBehaviour
 			worldData.chunkDictionary.Add(data.worldPosition, chunkRenderer);
 			chunkRenderer.initChunk(data);
 			chunkRenderer.UpdateChunk(meshData);
+
 		}
 		OnWorldCreated?.Invoke();
 	}
+
+
 
 	internal BlockType GetBlockFromChunkCoordinates(ChunkData chunkData, int x, int y, int z)
 	{
@@ -100,8 +90,8 @@ public class World : MonoBehaviour
 	{
 		Debug.Log("Load more chunks");
 		OnNewChunksGenerated?.Invoke();
-		//GenerateWorld(Vector3Int.RoundToInt(player.transform.position));
-		//OnNewChunksGenerated?.Invoke();
+		GenerateWorld(Vector3Int.RoundToInt(player.transform.position));
+		OnNewChunksGenerated?.Invoke();
 	}
 	private WorldGenerationData GetPositionsThatPlayerSees(Vector3Int playerPosition)
 	{

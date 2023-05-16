@@ -9,7 +9,7 @@ public class UndergroundLayerHandler : BlockLayerHandler
 	{
 		if (y < surfaceHeightNoise)
 		{
-			Vector3Int pos = new Vector3Int(x, y, z);
+			Vector3Int pos = new Vector3Int(x, y - chunkData.worldPosition.y, z);
 			Chunk.setBlock(chunkData, pos, undergroundBlockType);
 			return true;
 		}

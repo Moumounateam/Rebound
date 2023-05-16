@@ -88,6 +88,6 @@ public class Character : MonoBehaviour
 	}
 
 	private void ModifyTerrain(RaycastHit hit){
-		//world.SetBlock(hit, BlockType.Air);
+		world.SetBlock(hit, BlockType.Air);
 	}
 }

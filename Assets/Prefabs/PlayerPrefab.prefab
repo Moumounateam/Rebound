@@ -170,7 +170,7 @@ MonoBehaviour:
   interactionRayLength: 5
   groundMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   fly: 0
   animator: {fileID: 116692707738079568}
   world: {fileID: 0}

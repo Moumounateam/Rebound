@@ -116,7 +116,55 @@ public class World : MonoBehaviour
 	{
 		chunk.gameObject.SetActive(false);
 	}
-	
+
+	internal bool SetBlock(RaycastHit hit, BlockType blockType)
+	{
+		ChunkRenderer chunk = hit.collider.GetComponent<ChunkRenderer>();
+		if (chunk == null)
+			return false;
+
+		Vector3Int pos = GetBlockPos(hit);
+
+		WorldDataHelper.SetBlock(chunk.ChunkData.worldReference, pos, blockType);
+		chunk.ModifiedByThePlayer = true;
+
+		//if (Chunk.IsOnEdge(chunk.ChunkData, pos))
+		//{
+		//	List<ChunkData> neighbourDataList = Chunk.GetEdgeNeighbourChunk(chunk.ChunkData, pos);
+		//	foreach (ChunkData neighbourData in neighbourDataList)
+		//	{
+		//		//neighbourData.modifiedByThePlayer = true;
+		//		ChunkRenderer chunkToUpdate = WorldDataHelper.GetChunk(neighbourData.worldReference, neighbourData.worldPosition);
+		//		if (chunkToUpdate != null)
+		//			chunkToUpdate.UpdateChunk();
+		//	}
+
+		//}
+		chunk.UpdateChunk();
+		return true;
+	}
+
+	private Vector3Int GetBlockPos(RaycastHit hit)
+	{
+		Vector3 pos = new Vector3(
+			 GetBlockPositionIn(hit.point.x, hit.normal.x),
+			 GetBlockPositionIn(hit.point.y, hit.normal.y),
+			 GetBlockPositionIn(hit.point.z, hit.normal.z)
+			 );
+
+		return Vector3Int.RoundToInt(pos);
+	}
+
+	private float GetBlockPositionIn(float pos, float normal)
+	{
+		if (Mathf.Abs(pos % 1) == 0.5f)
+		{
+			pos -= (normal / 2);
+		}
+
+		return (float)pos;
+	}
+
 	public struct WorldGenerationData
 	{
 		public List<Vector3Int> chunkPositionsToCreate;

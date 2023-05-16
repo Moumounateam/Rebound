@@ -92,34 +92,6 @@ public static class WorldDataHelper
 			.ToList();
 	}
 
-	//internal static ChunkRenderer GetChunk(World worldReference, Vector3Int worldPosition)
-	//{
-	//	if (worldReference.worldData.chunkDictionary.ContainsKey(worldPosition))
-	//		return worldReference.worldData.chunkDictionary[worldPosition];
-	//	return null;
-	//}
-
-	//internal static void SetBlock(World worldReference, Vector3Int pos, BlockType blockType)
-	//{
-	//	ChunkData chunkData = GetChunkData(worldReference, pos);
-	//	if (chunkData != null)
-	//	{
-	//		Vector3Int localPosition = Chunk.GetBlockInChunkCoordinates(chunkData, pos);
-	//		Chunk.SetBlock(chunkData, localPosition, blockType);
-	//	}
-	//}
-
-	//public static ChunkData GetChunkData(World worldReference, Vector3Int pos)
-	//{
-	//	Vector3Int chunkPosition = ChunkPositionFromBlockCoords(worldReference, pos);
-
-	//	ChunkData containerChunk = null;
-
-	//	worldReference.worldData.chunkDataDictionary.TryGetValue(chunkPosition, out containerChunk);
-
-	//	return containerChunk;
-	//}
-
 	internal static List<Vector3Int> GetUnneededData(World.WorldData worldData, List<Vector3Int> allChunkDataPositionsNeeded)
 	{
 		return worldData.chunkDataDictionary.Keys
@@ -155,5 +127,34 @@ public static class WorldDataHelper
 			world.RemoveChunk(chunk);
 			world.worldData.chunkDictionary.Remove(pos);
 		}
+	}
+	internal static void SetBlock(World worldReference, Vector3Int pos, BlockType blockType)
+	{
+		ChunkData chunkData = GetChunkData(worldReference, pos);
+		if (!worldReference)
+			throw new System.Exception("No worldRef");
+		if (chunkData != null)
+		{
+			Vector3Int localPosition = Chunk.GetBlockInChunkCoordinates(chunkData, pos);
+			Chunk.setBlock(chunkData, localPosition, blockType);
+		}
+	}
+
+	internal static ChunkRenderer GetChunk(World worldReference, Vector3Int worldPosition)
+	{
+		if (worldReference.worldData.chunkDictionary.ContainsKey(worldPosition))
+			return worldReference.worldData.chunkDictionary[worldPosition];
+		return null;
+	}
+
+	public static ChunkData GetChunkData(World worldReference, Vector3Int pos)
+	{
+		Vector3Int chunkPosition = ChunkPositionFromBlockCoords(worldReference, pos);
+
+		ChunkData containerChunk = null;
+
+		worldReference.worldData.chunkDataDictionary.TryGetValue(chunkPosition, out containerChunk);
+
+		return containerChunk;
 	}
 }

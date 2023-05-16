@@ -9,7 +9,15 @@ public class BiomeGenerator : MonoBehaviour
 	public DomainWarping domainWarping;
 	public bool WarpingSwitch = true;
 	public BlockLayerHandler startLayerHandler;
+	public TreeGenerator treeGenerator;
 	public List<BlockLayerHandler> additionalLayersHandlers;
+
+	internal TreeData GetTreeData(ChunkData data, Vector2Int mapSeedOffset)
+	{
+		if (treeGenerator == null)
+			return new TreeData();
+		return treeGenerator.GenerateTreeData(data, mapSeedOffset);
+	}
 
 	public ChunkData ProcessChunkColumn(ChunkData data, int x, int z, Vector2Int mapSeedOffset)
 	{

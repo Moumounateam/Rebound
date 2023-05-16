@@ -454,8 +454,55 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1914060930}
+  - {fileID: 470560561}
   m_Father: {fileID: 2046925616}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &470560559
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 470560561}
+  - component: {fileID: 470560560}
+  m_Layer: 0
+  m_Name: TreeLayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &470560560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470560559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2df73ba9bda36b4fabb09ed1ed047fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Next: {fileID: 0}
+  terrainHeightLimit: 25
+--- !u!4 &470560561
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470560559}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 312128971}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &845894956
 GameObject:
@@ -1336,6 +1383,7 @@ GameObject:
   - component: {fileID: 2046925616}
   - component: {fileID: 2046925615}
   - component: {fileID: 2046925617}
+  - component: {fileID: 2046925618}
   m_Layer: 0
   m_Name: BiomeGenerator
   m_TagString: Untagged
@@ -1360,8 +1408,10 @@ MonoBehaviour:
   domainWarping: {fileID: 2046925617}
   WarpingSwitch: 1
   startLayerHandler: {fileID: 918314827}
+  treeGenerator: {fileID: 2046925618}
   additionalLayersHandlers:
   - {fileID: 1914060929}
+  - {fileID: 470560560}
 --- !u!4 &2046925616
 Transform:
   m_ObjectHideFlags: 0
@@ -1398,6 +1448,20 @@ MonoBehaviour:
   noiseDomainY: {fileID: 11400000, guid: cdda461db9c30064282241cf688128ce, type: 2}
   amplitudeX: 80
   amplitudeY: 80
+--- !u!114 &2046925618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046925614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebeae6961dddca441bfa8d9a442f00d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  treeNoiseSettings: {fileID: 11400000, guid: f81bdc1b615070e47a8b4546b6b2ea02, type: 2}
+  domainWarping: {fileID: 2046925617}
 --- !u!1 &2135116336
 GameObject:
   m_ObjectHideFlags: 0

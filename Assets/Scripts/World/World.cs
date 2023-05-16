@@ -22,6 +22,8 @@ public class World : MonoBehaviour
 	public UnityEvent OnWorldCreated;
 	public UnityEvent OnNewChunksGenerated;
 
+	private CancellationTokenSource taskTokenSource = new CancellationTokenSource();
+
 	public WorldData worldData { get; private set; }
 	public bool IsWorldCreated { get; private set; }
 	private void Awake()
@@ -42,7 +44,7 @@ public class World : MonoBehaviour
 
 	private async Task GenerateWorld(Vector3Int position)
 	{
-		WorldGenerationData worldGenerationData = await Task.Run(() => GetPositionsThatPlayerSees(position));
+		WorldGenerationData worldGenerationData = await Task.Run(() => GetPositionsThatPlayerSees(position), taskTokenSource.Token);
 
 		foreach (Vector3Int pos in worldGenerationData.chunkPositionsToRemove)
 		{
@@ -55,15 +57,15 @@ public class World : MonoBehaviour
 		}
 
 		ConcurrentDictionary<Vector3Int, ChunkData> dataDictionary = null;
-		//try
-		//{
-		dataDictionary = await CalculateWorldChunkData(worldGenerationData.chunkDataPositionsToCreate);
-		//}
-		//catch (Exception)
-		//{
-		//	Debug.Log("Task canceled");
-		//	return;
-		//}
+		try
+		{
+			dataDictionary = await CalculateWorldChunkData(worldGenerationData.chunkDataPositionsToCreate);
+		}
+		catch (Exception)
+		{
+			Debug.Log("Task canceled");
+			return;
+		}
 
 		foreach (var calculateData in dataDictionary)
 		{
@@ -76,8 +78,15 @@ public class World : MonoBehaviour
 			.Where(keyvaluepair => worldGenerationData.chunkPositionsToCreate.Contains(keyvaluepair.Key))
 			.Select(keyvalpair => keyvalpair.Value)
 			.ToList();
-		meshDataDictionary = await CreateMeshDataAsync(dataToRender);
-
+		try
+		{
+			meshDataDictionary = await CreateMeshDataAsync(dataToRender);
+		}
+		catch (Exception)
+		{
+			Debug.Log("Task canceled");
+			return;
+		}
 		StartCoroutine(ChunkCreationCoroutine(meshDataDictionary));
 	}
 
@@ -89,16 +98,13 @@ public class World : MonoBehaviour
 
 			foreach (ChunkData data in dataToRender)
 			{
-				//if (taskTokenSource.Token.IsCancellationRequested)
-				//{
-				//	taskTokenSource.Token.ThrowIfCancellationRequested();
-				//}
+				if (taskTokenSource.Token.IsCancellationRequested)
+					taskTokenSource.Token.ThrowIfCancellationRequested(); // Game closed, stop thread
 				MeshData meshData = Chunk.GetChunkMeshData(data);
 				dictionary.TryAdd(data.worldPosition, meshData);
 			}
-
 			return dictionary;
-		}//taskTokenSource.Token
+		}, taskTokenSource.Token
 		);
 	}
 
@@ -110,17 +116,15 @@ public class World : MonoBehaviour
 		{
 			foreach (Vector3Int pos in chunkDataPositionsToCreate)
 			{
-				//if (taskTokenSource.Token.IsCancellationRequested)
-				//{
-				//	taskTokenSource.Token.ThrowIfCancellationRequested();
-				//}
+				if (taskTokenSource.Token.IsCancellationRequested)
+					taskTokenSource.Token.ThrowIfCancellationRequested(); //Game closed, stop thread
 				ChunkData data = new ChunkData(chunkSize, chunkHeight, this, pos);
 				ChunkData newData = terrainGenerator.GenerateChunkData(data, mapSeedOffset);
 				dictionary.TryAdd(pos, newData);
 			}
 			return dictionary;
-		}
-		//taskTokenSource.Token
+		},
+		taskTokenSource.Token
 		);
 	}
 
@@ -240,6 +244,11 @@ public class World : MonoBehaviour
 
 		return (float)pos;
 	}
+	public void OnDisable()
+	{
+		taskTokenSource.Cancel();
+	}
+
 
 	public struct WorldGenerationData
 	{

@@ -13,8 +13,6 @@ public class World : MonoBehaviour
 
 	public TerrainGenerator terrainGenerator;
 	public Vector2Int mapSeedOffset;
-	//Dictionary<Vector3Int, ChunkData> chunkDataDictionary = new Dictionary<Vector3Int, ChunkData>();
-	//Dictionary<Vector3Int, ChunkRenderer> chunkDictionary = new Dictionary<Vector3Int, ChunkRenderer>();
 
 	public UnityEvent OnWorldCreated;
 	public UnityEvent OnNewChunksGenerated;
@@ -128,18 +126,17 @@ public class World : MonoBehaviour
 		WorldDataHelper.SetBlock(chunk.ChunkData.worldReference, pos, blockType);
 		chunk.ModifiedByThePlayer = true;
 
-		//if (Chunk.IsOnEdge(chunk.ChunkData, pos))
-		//{
-		//	List<ChunkData> neighbourDataList = Chunk.GetEdgeNeighbourChunk(chunk.ChunkData, pos);
-		//	foreach (ChunkData neighbourData in neighbourDataList)
-		//	{
-		//		//neighbourData.modifiedByThePlayer = true;
-		//		ChunkRenderer chunkToUpdate = WorldDataHelper.GetChunk(neighbourData.worldReference, neighbourData.worldPosition);
-		//		if (chunkToUpdate != null)
-		//			chunkToUpdate.UpdateChunk();
-		//	}
+		if (Chunk.IsOnEdge(chunk.ChunkData, pos)) //Update neighbour chunk if block destroyed is on edge
+		{
+			List<ChunkData> neighbourDataList = Chunk.GetEdgeNeighbourChunk(chunk.ChunkData, pos);
+			foreach (ChunkData neighbourData in neighbourDataList)
+			{
+				ChunkRenderer chunkToUpdate = WorldDataHelper.GetChunk(neighbourData.worldReference, neighbourData.worldPosition);
+				if (chunkToUpdate != null)
+					chunkToUpdate.UpdateChunk();
+			}
+		}
 
-		//}
 		chunk.UpdateChunk();
 		return true;
 	}

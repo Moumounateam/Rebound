@@ -21,6 +21,7 @@ public class World : MonoBehaviour
 
 	public UnityEvent OnWorldCreated;
 	public UnityEvent OnNewChunksGenerated;
+	public WorldRenderer worldRenderer;
 
 	private CancellationTokenSource taskTokenSource = new CancellationTokenSource();
 
@@ -144,11 +145,8 @@ public class World : MonoBehaviour
 
 	private void CreateChunk(WorldData worldData, Vector3Int position, MeshData meshData)
 	{
-		GameObject chunkObject = Instantiate(chunkPrefab, position, Quaternion.identity);
-		ChunkRenderer chunkRenderer = chunkObject.GetComponent<ChunkRenderer>();
+		ChunkRenderer chunkRenderer = worldRenderer.RenderChunk(worldData, position, meshData);
 		worldData.chunkDictionary.Add(position, chunkRenderer);
-		chunkRenderer.initChunk(worldData.chunkDataDictionary[position]);
-		chunkRenderer.UpdateChunk(meshData);
 	}
 
 	internal BlockType GetBlockFromChunkCoordinates(ChunkData chunkData, int x, int y, int z)
@@ -191,11 +189,6 @@ public class World : MonoBehaviour
 			chunkDataToRemove = chunkDataToRemove,
 		};
 		return data;
-	}
-
-	internal void RemoveChunk(ChunkRenderer chunk)
-	{
-		chunk.gameObject.SetActive(false);
 	}
 
 	internal bool SetBlock(RaycastHit hit, BlockType blockType)
@@ -257,11 +250,11 @@ public class World : MonoBehaviour
 		public List<Vector3Int> chunkPositionsToRemove;
 		public List<Vector3Int> chunkDataToRemove;
 	}
-	public struct WorldData
-	{
-		public Dictionary<Vector3Int, ChunkData> chunkDataDictionary;
-		public Dictionary<Vector3Int, ChunkRenderer> chunkDictionary;
-		public int chunkSize;
-		public int chunkHeight;
-	}
+}
+public struct WorldData
+{
+	public Dictionary<Vector3Int, ChunkData> chunkDataDictionary;
+	public Dictionary<Vector3Int, ChunkRenderer> chunkDictionary;
+	public int chunkSize;
+	public int chunkHeight;
 }

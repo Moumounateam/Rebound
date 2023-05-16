@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class World : MonoBehaviour 
+public class World : MonoBehaviour
 {
 	public int mapSizeInChunks = 6;
 	public int chunkSize = 16;
@@ -73,6 +73,10 @@ public class World : MonoBehaviour
 			worldData.chunkDataDictionary.Add(calculateData.Key, calculateData.Value);
 		}
 
+		foreach(var chunkData in worldData.chunkDataDictionary.Values)
+		{
+			AddTreeLeaves(chunkData);
+		}
 		ConcurrentDictionary<Vector3Int, MeshData> meshDataDictionary = new ConcurrentDictionary<Vector3Int, MeshData>();
 		
 		List<ChunkData> dataToRender = worldData.chunkDataDictionary
@@ -89,6 +93,14 @@ public class World : MonoBehaviour
 			return;
 		}
 		StartCoroutine(ChunkCreationCoroutine(meshDataDictionary));
+	}
+
+	private void AddTreeLeaves(ChunkData chunkData)
+	{
+		foreach (Vector3Int treeLeaves in chunkData.treeData.treeLeavesSolid)
+		{
+			Chunk.setBlock(chunkData, treeLeaves, BlockType.TreeLeavesSolid);
+		}
 	}
 
 	private Task<ConcurrentDictionary<Vector3Int, MeshData>> CreateMeshDataAsync(List<ChunkData> dataToRender)

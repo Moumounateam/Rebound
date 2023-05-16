@@ -5,13 +5,13 @@ using UnityEngine;
 
 public static class WorldDataHelper
 {
-	public static Vector3Int ChunkPositionFromBlockCoords(World world, Vector3Int position)
+	public static Vector3Int ChunkPositionFromBlockCoords(World world, Vector3Int worldPosition)
 	{
 		return new Vector3Int
 		{
-			x = Mathf.FloorToInt(position.x / (float)world.chunkSize) * world.chunkSize,
-			y = Mathf.FloorToInt(position.y / (float)world.chunkHeight) * world.chunkHeight,
-			z = Mathf.FloorToInt(position.z / (float)world.chunkSize) * world.chunkSize
+			x = Mathf.FloorToInt(worldPosition.x / (float)world.chunkSize) * world.chunkSize,
+			y = Mathf.FloorToInt(worldPosition.y / (float)world.chunkHeight) * world.chunkHeight,
+			z = Mathf.FloorToInt(worldPosition.z / (float)world.chunkSize) * world.chunkSize
 		};
 	}
 
@@ -128,14 +128,14 @@ public static class WorldDataHelper
 			world.worldData.chunkDictionary.Remove(pos);
 		}
 	}
-	internal static void SetBlock(World worldReference, Vector3Int pos, BlockType blockType)
+	internal static void SetBlock(World worldReference, Vector3Int worldBlockPosition, BlockType blockType)
 	{
-		ChunkData chunkData = GetChunkData(worldReference, pos);
+		ChunkData chunkData = GetChunkData(worldReference, worldBlockPosition);
 		if (!worldReference)
 			throw new System.Exception("No worldRef");
 		if (chunkData != null)
 		{
-			Vector3Int localPosition = Chunk.GetBlockInChunkCoordinates(chunkData, pos);
+			Vector3Int localPosition = Chunk.GetBlockInChunkCoordinates(chunkData, worldBlockPosition);
 			Chunk.setBlock(chunkData, localPosition, blockType);
 		}
 	}

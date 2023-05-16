@@ -4,6 +4,45 @@ using UnityEngine;
 
 public class TreeLayerHandler : BlockLayerHandler
 {
+	public static List<Vector3Int> treeLeavesStaticLayout = new List<Vector3Int>
+	{
+		new Vector3Int(-2, 0, -2),
+		new Vector3Int(-2, 0, -1),
+		new Vector3Int(-2, 0, 0),
+		new Vector3Int(-2, 0, 1),
+		new Vector3Int(-2, 0, 2),
+		new Vector3Int(-1, 0, -2),
+		new Vector3Int(-1, 0, -1),
+		new Vector3Int(-1, 0, 0),
+		new Vector3Int(-1, 0, 1),
+		new Vector3Int(-1, 0, 2),
+		new Vector3Int(0, 0, -2),
+		new Vector3Int(0, 0, -1),
+		new Vector3Int(0, 0, 0),
+		new Vector3Int(0, 0, 1),
+		new Vector3Int(0, 0, 2),
+		new Vector3Int(1, 0, -2),
+		new Vector3Int(1, 0, -1),
+		new Vector3Int(1, 0, 0),
+		new Vector3Int(1, 0, 1),
+		new Vector3Int(1, 0, 2),
+		new Vector3Int(2, 0, -2),
+		new Vector3Int(2, 0, -1),
+		new Vector3Int(2, 0, 0),
+		new Vector3Int(2, 0, 1),
+		new Vector3Int(2, 0, 2),
+		new Vector3Int(-1, 1, -1),
+		new Vector3Int(-1, 1, 0),
+		new Vector3Int(-1, 1, 1),
+		new Vector3Int(0, 1, -1),
+		new Vector3Int(0, 1, 0),
+		new Vector3Int(0, 1, 1),
+		new Vector3Int(1, 1, -1),
+		new Vector3Int(1, 1, 0),
+		new Vector3Int(1, 1, 1),
+		new Vector3Int(0, 2, 0)
+	};
+
 	public float terrainHeightLimit = 25;
 	protected override bool TryHandling(ChunkData chunkData, int x, int y, int z, int surfaceHeightNoise, Vector2Int mapSeedOffset)
 	{
@@ -22,10 +61,10 @@ public class TreeLayerHandler : BlockLayerHandler
 					chunkCoordinates.y = surfaceHeightNoise + i;
 					Chunk.setBlock(chunkData, chunkCoordinates, BlockType.TreeTrunk);
 				}
-				//foreach (Vector3Int leafPosition in treeLeafesStaticLayout)
-				//{
-				//	chunkData.treeData.treeLeavesSolid.Add(new Vector3Int(x + leafPosition.x, surfaceHeightNoise + 5 + leafPosition.y, z + leafPosition.z));
-				//}
+				foreach (Vector3Int leafPosition in treeLeavesStaticLayout)
+				{
+					chunkData.treeData.treeLeavesSolid.Add(new Vector3Int(x + leafPosition.x, surfaceHeightNoise + 5 + leafPosition.y, z + leafPosition.z));
+				}
 			}
 		}
 		return false;

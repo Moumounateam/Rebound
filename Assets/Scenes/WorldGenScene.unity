@@ -262,6 +262,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &128595834
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 128595836}
+  - component: {fileID: 128595835}
+  m_Layer: 0
+  m_Name: SurfaceLayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &128595835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128595834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fafe94b8b728d2244818c110adc1fc6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Next: {fileID: 1966406936}
+  surfaceBlockType: 10
+--- !u!4 &128595836
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128595834}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 756588289}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &143819344
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,6 +364,7 @@ GameObject:
   m_Component:
   - component: {fileID: 164084107}
   - component: {fileID: 164084106}
+  - component: {fileID: 164084108}
   m_Layer: 0
   m_Name: TerrainGenerator
   m_TagString: Untagged
@@ -338,6 +385,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   biomeGenerator: {fileID: 2046925615}
+  biomeCenters: []
+  biomeNoiseSettings: {fileID: 11400000, guid: ff46b6332f55b964bbcfae14decf6fca, type: 2}
+  biomeGeneratorsData:
+  - temperatureStartThreshold: 0
+    temperatureEndThreshold: 0.5
+    biomeTerrainGenerator: {fileID: 2046925615}
+  - temperatureStartThreshold: 0.5
+    temperatureEndThreshold: 1
+    biomeTerrainGenerator: {fileID: 756588287}
+  biomeDomainWarping: {fileID: 164084108}
 --- !u!4 &164084107
 Transform:
   m_ObjectHideFlags: 0
@@ -351,9 +408,26 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2046925616}
+  - {fileID: 756588289}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &164084108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164084105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d8812572e2282d48ac025a1cb705457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noiseDomainX: {fileID: 11400000, guid: 9bea0be92d5adb94a90fb0350486429b, type: 2}
+  noiseDomainY: {fileID: 11400000, guid: cdda461db9c30064282241cf688128ce, type: 2}
+  amplitudeX: 78
+  amplitudeY: 25
 --- !u!1 &263795724
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,6 +578,124 @@ Transform:
   m_Father: {fileID: 312128971}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &521099040
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 521099041}
+  m_Layer: 0
+  m_Name: AdditionalLayers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &521099041
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521099040}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 756588289}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &756588286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 756588289}
+  - component: {fileID: 756588287}
+  - component: {fileID: 756588290}
+  - component: {fileID: 756588288}
+  m_Layer: 0
+  m_Name: DesertBiomeGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &756588287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756588286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf1919a08220bd4d9aec4dcf9b921a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waterThreshold: 10
+  biomeNoiseSettings: {fileID: 11400000, guid: 8b5564da59d667f47b6eb099c4f5eca5, type: 2}
+  domainWarping: {fileID: 756588290}
+  WarpingSwitch: 1
+  startLayerHandler: {fileID: 2132154447}
+  treeGenerator: {fileID: 756588288}
+  additionalLayersHandlers: []
+--- !u!114 &756588288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756588286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebeae6961dddca441bfa8d9a442f00d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  treeNoiseSettings: {fileID: 11400000, guid: f81bdc1b615070e47a8b4546b6b2ea02, type: 2}
+  domainWarping: {fileID: 756588290}
+--- !u!4 &756588289
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756588286}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2132154448}
+  - {fileID: 128595836}
+  - {fileID: 1966406937}
+  - {fileID: 521099041}
+  m_Father: {fileID: 164084107}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &756588290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756588286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d8812572e2282d48ac025a1cb705457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noiseDomainX: {fileID: 11400000, guid: 9bea0be92d5adb94a90fb0350486429b, type: 2}
+  noiseDomainY: {fileID: 11400000, guid: cdda461db9c30064282241cf688128ce, type: 2}
+  amplitudeX: 80
+  amplitudeY: 80
 --- !u!1 &845894956
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,7 +1015,7 @@ MonoBehaviour:
   chunkSize: 16
   chunkHeight: 100
   chunkPrefab: {fileID: 9165900674113991520, guid: aeef67ac1dd57a048882eaef9ed4cc4f, type: 3}
-  chunkDrawingRange: 10
+  chunkDrawingRange: 16
   terrainGenerator: {fileID: 164084106}
   mapSeedOffset: {x: 0, y: 0}
   OnWorldCreated:
@@ -1232,6 +1424,52 @@ Transform:
   m_Father: {fileID: 312128971}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1966406935
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1966406937}
+  - component: {fileID: 1966406936}
+  m_Layer: 0
+  m_Name: UndergroundLayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1966406936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966406935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a852da1a04fcc6d45ad3e5f28aa1073f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Next: {fileID: 0}
+  undergroundBlockType: 10
+--- !u!4 &1966406937
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966406935}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 756588289}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1986009575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1462,6 +1700,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   treeNoiseSettings: {fileID: 11400000, guid: f81bdc1b615070e47a8b4546b6b2ea02, type: 2}
   domainWarping: {fileID: 2046925617}
+--- !u!1 &2132154446
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2132154448}
+  - component: {fileID: 2132154447}
+  m_Layer: 0
+  m_Name: AirLayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2132154447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132154446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce93b0391b05b864199413eddbd5b4bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Next: {fileID: 128595835}
+--- !u!4 &2132154448
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132154446}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 756588289}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2135116336
 GameObject:
   m_ObjectHideFlags: 0

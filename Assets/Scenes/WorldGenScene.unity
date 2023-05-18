@@ -1622,6 +1622,7 @@ GameObject:
   - component: {fileID: 2046925615}
   - component: {fileID: 2046925617}
   - component: {fileID: 2046925618}
+  - component: {fileID: 2046925619}
   m_Layer: 0
   m_Name: BiomeGenerator
   m_TagString: Untagged
@@ -1699,7 +1700,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   treeNoiseSettings: {fileID: 11400000, guid: f81bdc1b615070e47a8b4546b6b2ea02, type: 2}
-  domainWarping: {fileID: 2046925617}
+  domainWarping: {fileID: 2046925619}
+--- !u!114 &2046925619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046925614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d8812572e2282d48ac025a1cb705457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noiseDomainX: {fileID: 11400000, guid: d50fd747dab1d424590d8904a03245eb, type: 2}
+  noiseDomainY: {fileID: 11400000, guid: 60b3785ccf0bfa64faf67a839043f331, type: 2}
+  amplitudeX: 80
+  amplitudeY: 10
 --- !u!1 &2132154446
 GameObject:
   m_ObjectHideFlags: 0

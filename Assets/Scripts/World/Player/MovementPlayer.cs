@@ -57,6 +57,8 @@ public class MovementPlayer : MonoBehaviour
 	{
 		Vector3 movementDirection = GetMovementDirection(movementInput);
 		float speed = runningInput ? playerRunSpeed : playerSpeed;
+		if (!IsGrounded && playerVelocity.y <= 0f)
+			speed = speed * 0.75f;
 		controller.Move(movementDirection * Time.deltaTime * speed);
 	}
 

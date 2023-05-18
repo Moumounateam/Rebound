@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d8b469d401b7943ab2bd075fac22bd, type: 3}
   m_Name: TreeWarpingX
   m_EditorClassIdentifier: 
-  noiseZoom: 0.01
+  noiseZoom: 0.1
   persistance: 0.5
-  octaves: 2
-  offset: {x: 679, y: 5899}
+  octaves: 5
+  offset: {x: 0, y: 0}
   worldOffset: {x: 0, y: 0}
   redistributionModifier: 1.2
   exponent: 4

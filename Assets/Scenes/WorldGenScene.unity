@@ -306,7 +306,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 756588289}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &143819344
 GameObject:
@@ -607,7 +607,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 756588289}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &756588286
 GameObject:
@@ -644,7 +644,7 @@ MonoBehaviour:
   biomeNoiseSettings: {fileID: 11400000, guid: 8b5564da59d667f47b6eb099c4f5eca5, type: 2}
   domainWarping: {fileID: 756588290}
   WarpingSwitch: 1
-  startLayerHandler: {fileID: 2132154447}
+  startLayerHandler: {fileID: 1988961152}
   treeGenerator: {fileID: 756588288}
   additionalLayersHandlers: []
 --- !u!114 &756588288
@@ -673,6 +673,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1988961153}
   - {fileID: 2132154448}
   - {fileID: 128595836}
   - {fileID: 1966406937}
@@ -1015,7 +1016,7 @@ MonoBehaviour:
   chunkSize: 16
   chunkHeight: 100
   chunkPrefab: {fileID: 9165900674113991520, guid: aeef67ac1dd57a048882eaef9ed4cc4f, type: 3}
-  chunkDrawingRange: 16
+  chunkDrawingRange: 8
   terrainGenerator: {fileID: 164084106}
   mapSeedOffset: {x: 0, y: 0}
   OnWorldCreated:
@@ -1468,7 +1469,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 756588289}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1986009575
 GameObject:
@@ -1537,6 +1538,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1988961151
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1988961153}
+  - component: {fileID: 1988961152}
+  m_Layer: 0
+  m_Name: WaterLayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1988961152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988961151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3f60eb14e003b749938d13f898b7ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Next: {fileID: 2132154447}
+  waterLevel: 3
+--- !u!4 &1988961153
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988961151}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 756588289}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2008813182
 GameObject:
@@ -1715,8 +1762,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noiseDomainX: {fileID: 11400000, guid: d50fd747dab1d424590d8904a03245eb, type: 2}
   noiseDomainY: {fileID: 11400000, guid: 60b3785ccf0bfa64faf67a839043f331, type: 2}
-  amplitudeX: 80
-  amplitudeY: 10
+  amplitudeX: 50
+  amplitudeY: 50
 --- !u!1 &2132154446
 GameObject:
   m_ObjectHideFlags: 0
@@ -1760,7 +1807,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 756588289}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2135116336
 GameObject:

@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class MovementPlayer : MonoBehaviour
+public class MovementPlayer : NetworkBehaviour
 {
 	[SerializeField]
 	private CharacterController controller;
@@ -50,7 +51,7 @@ public class MovementPlayer : MonoBehaviour
 		{
 			movementDirection -= Vector3.up * flySpeed;
 		}
-		controller.Move(movementDirection * playerSpeed * Time.deltaTime);
+		ControllerMoveServerRpc(movementDirection * playerSpeed * Time.deltaTime);
 	}
 
 	public void Walk(Vector3 movementInput, bool runningInput)
@@ -59,7 +60,14 @@ public class MovementPlayer : MonoBehaviour
 		float speed = runningInput ? playerRunSpeed : playerSpeed;
 		if (!IsGrounded && playerVelocity.y <= 0f)
 			speed = speed * 0.75f;
-		controller.Move(movementDirection * Time.deltaTime * speed);
+		ControllerMoveServerRpc(movementDirection * Time.deltaTime * speed);
+	}
+	
+	[ServerRpc]
+	public void ControllerMoveServerRpc(Vector3 newPos)
+	{
+		if (IsOwner == false) return;
+		controller.Move(newPos);
 	}
 
 	public void HandleGravity(bool isJumping)
@@ -71,7 +79,7 @@ public class MovementPlayer : MonoBehaviour
 		if (isJumping && IsGrounded)
 			AddJumpForce();
 		ApplyGravityForce();
-		controller.Move(playerVelocity * Time.deltaTime);
+		ControllerMoveServerRpc(playerVelocity * Time.deltaTime);
 	}
 
 	private void AddJumpForce()

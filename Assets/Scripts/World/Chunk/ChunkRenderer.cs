@@ -4,12 +4,13 @@ using UnityEngine;
 using UnityEditor;
 using System.Linq;
 using System;
+using Unity.Netcode;
 
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(MeshCollider))]
 
-public class ChunkRenderer : MonoBehaviour
+public class ChunkRenderer : NetworkBehaviour
 {
 	MeshFilter meshFilter;
 	MeshCollider meshCollider;
